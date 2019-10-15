@@ -10,7 +10,12 @@ import cv2 as cv2
 import numpy
 import traceback
 
-
+def update(old, new, max_delta=0.1):
+    if abs(old - new) <= max_delta:
+        res = new
+    else:
+        res = 0.0
+    return res
 
 prev_flight_data = None
 run_recv_thread = True
@@ -92,6 +97,9 @@ class Drone():
         self.drone.subscribe(self.drone.EVENT_FLIGHT_DATA, handler)
         self.drone.subscribe(self.drone.EVENT_LOG_DATA, handler)
         self.current_image = None
+   
+    def set_speed(self, input):
+        self.speed
     
     def counter_clockwise(self, speed):
         self.drone.counter_clockwise(speed)
@@ -109,8 +117,20 @@ class Drone():
         self.drone.up(speed)
     def down(self, speed):
         self.drone.down(speed)
+    
+
+    def throttle(self, speed):
+        self.drone.set_throttle(speed)
+    def yaw(self, speed):
+        self.drone.set_yaw(speed)
+    def pitch(self, speed):
+        self.drone.set_pitch(speed)
+    def roll(self, speed):
+        self.drone.set_roll(speed)
         
-    def takeoff(self):
+
+
+    def takeoff1(self):
         time.sleep(.5)
         self.drone.takeoff()
     def land(self):
@@ -133,19 +153,20 @@ class Drone():
         global run_recv_thread
         global new_image
         
-        threading.Thread(target=recv_thread, args=[self.drone]).start()
-
-        try:
-            while 1:
-                # loop with pygame.event.get() is too much tight w/o some sleep
-                time.sleep(0.02)    
-                if self.current_image is not new_image:
-                    cv2.imshow('Tello', new_image)
-                    self.current_image = new_image
-                    cv2.waitKey(1)
-        except KeyboardInterrupt as e:
-            print(e)
-        except Exception as e:
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            traceback.print_exception(exc_type, exc_value, exc_traceback)
-            print("error", e)
+        d = threading.Thread(target=recv_thread, args=[self.drone])
+        d.daemon = True
+        d.start()
+        def show_img():
+            try:
+                while 1:
+                    # loop with pygame.event.get() is too much tight w/o some sleep
+                    time.sleep(0.02)    
+                    if self.current_image is not new_image:
+                        cv2.imshow('Tello', new_image)
+                        self.current_image = new_image
+                        cv2.waitKey(1)
+            except KeyboardInterrupt as e:
+                print(e)
+        t = threading.Thread(target=show_img)
+        t.daemon = True
+        t.start()

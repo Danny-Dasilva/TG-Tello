@@ -6,7 +6,7 @@
 
 import pygame
 from time import sleep
-from app.TEST import Drone
+from app.Drone import Drone
 
 
 
