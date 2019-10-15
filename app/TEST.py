@@ -97,12 +97,6 @@ class Drone():
         self.drone.subscribe(self.drone.EVENT_FLIGHT_DATA, handler)
         self.drone.subscribe(self.drone.EVENT_LOG_DATA, handler)
         self.current_image = None
-        # self.speed = 50
-        # self.throttle = 0.0
-        # self.yaw = 0.0
-        # self.pitch = 0.0
-        # self.roll = 0.0
-        # self.deadzone = .05
    
     def set_speed(self, input):
         self.speed
