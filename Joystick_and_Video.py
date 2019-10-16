@@ -18,10 +18,7 @@ drone.video()
 
 joystick_count = pygame.joystick.get_count()
 
-if joystick_count == 0:
-    # No joysticks!
-    print("Error, I didn't find any joysticks.")
-else:
+if joystick_count != 0:
     # Use joystick #0 and initialize it
     gamepad = pygame.joystick.Joystick(0)
     gamepad.init()
@@ -46,10 +43,6 @@ while True:
         B = gamepad.get_button(1)
     
 
-  
-   
-    
-   
 
     if Start == 1:
         print('Start pressed')
