@@ -120,6 +120,8 @@ class FlightDataDisplay(object):
             self._update = lambda drone,data: getattr(data, self._key)
 
     def update(self, drone, data):
+        global font
+        font = pygame.font.SysFont("dejavusansmono", 32)
         new_value = self._update(drone, data)
         if self._value != new_value:
             self._value = new_value
@@ -201,84 +203,3 @@ def handleFileReceived(event, sender, data):
         fd.write(data)
     status_print('Saved photo to %s' % path)
 
-    
-# class Drone():
-#     def __init__(self):
-#         self.drone = tellopy.Tello()
-#         self.drone.connect()
-#         self.drone.subscribe(self.drone.EVENT_FLIGHT_DATA, handler)
-#         self.drone.subscribe(self.drone.EVENT_LOG_DATA, handler)
-#         self.current_image = None
-   
-#     def set_speed(self, input):
-#         self.speed
-    
-#     def counter_clockwise(self, speed):
-#         self.drone.counter_clockwise(speed)
-#     def clockwise(self, speed):
-#         self.drone.clockwise(speed)
-#     def forward(self, speed):
-#         self.drone.forward(speed)
-#     def backward(self, speed):
-#         self.drone.backward(speed)
-#     def left(self, speed):
-#         self.drone.left(speed)
-#     def right(self, speed):
-#         self.drone.right(speed)
-#     def up(self, speed):
-#         self.drone.up(speed)
-#     def down(self, speed):
-#         self.drone.down(speed)
-    
-
-#     def throttle(self, speed):
-#         self.drone.set_throttle(speed)
-#     def yaw(self, speed):
-#         self.drone.set_yaw(speed)
-#     def pitch(self, speed):
-#         self.drone.set_pitch(speed)
-#     def roll(self, speed):
-#         self.drone.set_roll(speed)
-        
-
-
-#     def takeoff(self):
-#         time.sleep(.5)
-#         self.drone.takeoff()
-#     def land(self):
-#         time.sleep(.5)
-#         self.drone.land()
-#     def sleep(self, sec):
-#         print("before")
-#         time.sleep(sec)
-#         print("after")
-#         self.drone.counter_clockwise(0)
-#         self.drone.clockwise(0)
-#         self.drone.forward(0)
-#         self.drone.backward(0)
-#         self.drone.left(0)
-#         self.drone.right(0)
-#         self.drone.up(0)
-#         self.drone.down(0)
-#     def video(self):
-#         global buttons
-#         global run_recv_thread
-#         global new_image
-        
-#         d = threading.Thread(target=recv_thread, args=[self.drone])
-#         d.daemon = True
-#         d.start()
-#         def show_img():
-#             try:
-#                 while 1:
-#                     # loop with pygame.event.get() is too much tight w/o some sleep
-#                     time.sleep(0.02)    
-#                     if self.current_image is not new_image:
-#                         cv2.imshow('Tello', new_image)
-#                         self.current_image = new_image
-#                         cv2.waitKey(1)
-#             except KeyboardInterrupt as e:
-#                 print(e)
-#         t = threading.Thread(target=show_img)
-#         t.daemon = True
-#         t.start()
