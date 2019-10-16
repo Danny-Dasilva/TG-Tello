@@ -14,7 +14,8 @@ setuptools.setup(
     url="https://github.com/Danny-Dasilva/TG-Tello",
     install_requires=[
         "pygame",
-        "bcrypt",
+        "av",
+        "opencv-python",
     ],
     packages=setuptools.find_packages(),
     classifiers=[
