@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="TG-Tello",
+    name="TG_Tello",
     version="0.0.1",
     author="Danny Dasilva",
     author_email="dannydasilva.solutions@gmail.com",
     description="Tello Python Wrapper",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Danny-Dasilva/TG-Tello",
+    url="https://github.com/Danny-Dasilva/TG_Tello",
     install_requires=[
         "pygame",
         "av",
