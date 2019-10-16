@@ -130,7 +130,7 @@ class Drone():
         
 
 
-    def takeoff1(self):
+    def takeoff(self):
         time.sleep(.5)
         self.drone.takeoff()
     def land(self):
