@@ -53,7 +53,7 @@ while True:
 
     if Start == 1:
         print('Start pressed')
-        drone.takeoff1()
+        drone.takeoff()
     
     if Back == 1:
         drone.land()
@@ -72,7 +72,6 @@ while True:
     else:
         drone.throttle(0)
     if abs(leftstickx) > .05:
-       
         drone.roll(leftstickx)
     else:
         drone.roll(0)
