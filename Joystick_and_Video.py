@@ -72,7 +72,7 @@ while True:
     else:
         drone.throttle(0)
     if abs(leftstickx) > .05:
-        print("call")
+       
         drone.roll(leftstickx)
     else:
         drone.roll(0)
