@@ -6,7 +6,7 @@
 
 import pygame
 from time import sleep
-from app.Drone import Drone
+from TG_Tello.Drone import Drone
 
 
 

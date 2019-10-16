@@ -170,3 +170,6 @@ class Drone():
         t = threading.Thread(target=show_img)
         t.daemon = True
         t.start()
+
+
+        

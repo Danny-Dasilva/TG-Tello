@@ -1,0 +1,1 @@
+pygame not being initialized in backround thread
