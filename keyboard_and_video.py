@@ -234,7 +234,7 @@ def main():
     drone.subscribe(drone.EVENT_VIDEO_FRAME, videoFrameHandler)
     drone.subscribe(drone.EVENT_FILE_RECEIVED, handleFileReceived)
     speed = 30
-
+a
     try:
         while 1:
             time.sleep(0.01)  # loop with pygame.event.get() is too mush tight w/o some sleep
